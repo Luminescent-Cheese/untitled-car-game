@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://b14prd8mnvt2w"]
+
+[ext_resource type="Script" uid="uid://dcga3r30e38cl" path="res://skid.gd" id="1_jucqf"]
+
+[sub_resource type="Gradient" id="Gradient_05oqt"]
+offsets = PackedFloat32Array(0.358025, 0.895062)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1)
+
+[node name="skid" type="Line2D"]
+default_color = Color(0, 0, 0, 1)
+gradient = SubResource("Gradient_05oqt")
+script = ExtResource("1_jucqf")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

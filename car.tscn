@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://df354sfjqje18"]
+
+[ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://DriveController.gd" id="1_uoj53"]
+[ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://steering curve.tres" id="2_06lh1"]
+[ext_resource type="Texture2D" uid="uid://bj7fbixt561cp" path="res://NewCar.png" id="2_uoj53"]
+[ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://tire_skid.gd" id="3_k61xc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k61xc"]
+radius = 42.0
+height = 162.0
+
+[sub_resource type="Gradient" id="Gradient_k61xc"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
+
+[node name="Car" type="CharacterBody2D"]
+script = ExtResource("1_uoj53")
+steeringCurve = ExtResource("2_06lh1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -2.5)
+rotation = 1.5708
+texture = ExtResource("2_uoj53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_k61xc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+
+[node name="skidLines" type="Node2D" parent="."]
+position = Vector2(37, 45)
+
+[node name="tireSkid" type="Node2D" parent="skidLines"]
+z_index = 2
+position = Vector2(0, -2)
+script = ExtResource("3_k61xc")
+
+[node name="Line2D" type="Line2D" parent="skidLines/tireSkid"]
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid2" type="Node2D" parent="skidLines"]
+z_index = 2
+position = Vector2(0, -87)
+script = ExtResource("3_k61xc")
+
+[node name="Line2D" type="Line2D" parent="skidLines/tireSkid2"]
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid3" type="Node2D" parent="skidLines"]
+z_index = 2
+position = Vector2(-81, -87)
+script = ExtResource("3_k61xc")
+
+[node name="Line2D" type="Line2D" parent="skidLines/tireSkid3"]
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid4" type="Node2D" parent="skidLines"]
+z_index = 2
+position = Vector2(-81, -3)
+script = ExtResource("3_k61xc")
+
+[node name="Line2D" type="Line2D" parent="skidLines/tireSkid4"]
+gradient = SubResource("Gradient_k61xc")
