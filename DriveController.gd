@@ -11,7 +11,10 @@ var goalRotation = 0
 @export var currentSpeed: int = 0
 var currentMovementDirection = Vector2.ZERO
 
+var frontCollision = false
 
+func _ready() -> void:
+	pass
 func _physics_process(delta: float) -> void:
 	#handles Rotation
 	if Input.is_action_pressed("left"):
@@ -52,3 +55,13 @@ func _physics_process(delta: float) -> void:
 	currentMovementDirection = currentMovementDirection.lerp(rotationInVector2, .1)
 	velocity = currentMovementDirection * currentSpeed
 	move_and_slide()
+
+
+
+
+func _on_front_collision_body_entered(body: Node2D) -> void:
+	frontCollision = true
+	currentSpeed = (0 - currentSpeed)/3
+	
+func _on_front_collision_body_exited(body: Node2D) -> void:
+	frontCollision = false

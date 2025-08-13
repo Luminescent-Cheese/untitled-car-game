@@ -1,16 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxtm8ui0b4rdy"]
 
-[ext_resource type="Texture2D" uid="uid://evcqrx8li7d8" path="res://icon.svg" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://boh37fyhjdws" path="res://procederal_generation.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://df354sfjqje18" path="res://car.tscn" id="1_uhqqe"]
 
 [node name="test scene" type="Node2D"]
 
-[node name="Icon" type="Sprite2D" parent="."]
-modulate = Color(0.517647, 0.537255, 1, 1)
-z_index = -4
-position = Vector2(597.5, 391)
-scale = Vector2(23.8984, 18.6094)
-texture = ExtResource("1_ia1lp")
+[node name="ProcederalGeneration" parent="." instance=ExtResource("1_ia1lp")]
+z_index = -2
+position = Vector2(-218, -392)
 
 [node name="Car" parent="." instance=ExtResource("1_uhqqe")]
 position = Vector2(610, 309)
