@@ -1,7 +1,6 @@
 extends Node2D
 
-@onready var skid = preload("res://skid.tscn")
-
+@onready var skid = preload("res://Car/skid.tscn")
 var on: bool = false
 var currentLine: Line2D = null
 

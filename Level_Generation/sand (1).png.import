@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj7fbixt561cp"
-path="res://.godot/imported/NewCar.png-647ac101f4f2ffee67061cffa3dd80fe.ctex"
+uid="uid://w8002euxshok"
+path="res://.godot/imported/sand (1).png-657a6ab31c925121e42f43621a9e67e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://NewCar.png"
-dest_files=["res://.godot/imported/NewCar.png-647ac101f4f2ffee67061cffa3dd80fe.ctex"]
+source_file="res://Level_Generation/sand (1).png"
+dest_files=["res://.godot/imported/sand (1).png-657a6ab31c925121e42f43621a9e67e8.ctex"]
 
 [params]
 

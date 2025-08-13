@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cxtm8ui0b4rdy"]
 
-[ext_resource type="PackedScene" uid="uid://boh37fyhjdws" path="res://procederal_generation.tscn" id="1_ia1lp"]
-[ext_resource type="PackedScene" uid="uid://df354sfjqje18" path="res://car.tscn" id="1_uhqqe"]
+[ext_resource type="PackedScene" uid="uid://boh37fyhjdws" path="res://Level_Generation/procederal_generation.tscn" id="1_ia1lp"]
+[ext_resource type="PackedScene" uid="uid://df354sfjqje18" path="res://Car/car.tscn" id="1_uhqqe"]
 
 [node name="test scene" type="Node2D"]
 

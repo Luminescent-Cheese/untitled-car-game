@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://df354sfjqje18"]
 
-[ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://DriveController.gd" id="1_uoj53"]
-[ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://steering curve.tres" id="2_06lh1"]
-[ext_resource type="Texture2D" uid="uid://bj7fbixt561cp" path="res://NewCar.png" id="2_uoj53"]
-[ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://tire_skid.gd" id="3_k61xc"]
+[ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://Car/DriveController.gd" id="1_uoj53"]
+[ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_06lh1"]
+[ext_resource type="Texture2D" uid="uid://bj7fbixt561cp" path="res://Car/NewCar.png" id="2_uoj53"]
+[ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://Car/tire_skid.gd" id="3_k61xc"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k61xc"]
 radius = 42.0
@@ -31,7 +31,7 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k61xc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(0.05, 0.05)
+zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
 [node name="skidLines" type="Node2D" parent="."]
