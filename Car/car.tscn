@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://df354sfjqje18"]
+[gd_scene load_steps=9 format=3 uid="uid://df354sfjqje18"]
 
 [ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://Car/DriveController.gd" id="1_uoj53"]
 [ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_06lh1"]
 [ext_resource type="Texture2D" uid="uid://bj7fbixt561cp" path="res://Car/NewCar.png" id="2_uoj53"]
 [ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://Car/tire_skid.gd" id="3_k61xc"]
+[ext_resource type="PackedScene" uid="uid://eyteytkq2ruo" path="res://Gun/roof_gun.tscn" id="5_pvss3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k61xc"]
 radius = 42.0
@@ -76,6 +77,8 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="frontCollision"]
 position = Vector2(70, 0)
 shape = SubResource("RectangleShape2D_06lh1")
+
+[node name="RoofGun" parent="." instance=ExtResource("5_pvss3")]
 
 [connection signal="body_entered" from="frontCollision" to="." method="_on_front_collision_body_entered"]
 [connection signal="body_exited" from="frontCollision" to="." method="_on_front_collision_body_exited"]
