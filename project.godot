@@ -53,3 +53,8 @@ right={
 2d_physics/layer_2="walls"
 2d_physics/layer_3="playerBullets"
 2d_physics/layer_4="carTurret"
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"

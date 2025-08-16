@@ -1,37 +1,39 @@
-[gd_scene load_steps=9 format=3 uid="uid://df354sfjqje18"]
+[gd_scene load_steps=11 format=3 uid="uid://df354sfjqje18"]
 
 [ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://Car/DriveController.gd" id="1_uoj53"]
 [ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_06lh1"]
-[ext_resource type="Texture2D" uid="uid://bj7fbixt561cp" path="res://Car/NewCar.png" id="2_uoj53"]
 [ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://Car/tire_skid.gd" id="3_k61xc"]
+[ext_resource type="Curve" uid="uid://byc3adyh7rdcs" path="res://Car/cameraScale.tres" id="3_kky2y"]
+[ext_resource type="Texture2D" uid="uid://cosmr0jvp5fch" path="res://Car/NewCar (3) (1).png" id="4_6w75b"]
 [ext_resource type="PackedScene" uid="uid://eyteytkq2ruo" path="res://Gun/roof_gun.tscn" id="5_pvss3"]
+[ext_resource type="Texture2D" uid="uid://dc7id4jjyxrl8" path="res://Car/gradientTriangleLight.png" id="7_6w75b"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k61xc"]
-radius = 42.0
-height = 162.0
+radius = 52.0
+height = 220.0
 
 [sub_resource type="Gradient" id="Gradient_k61xc"]
 colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06lh1"]
-size = Vector2(20, 84)
+size = Vector2(23, 99)
 
 [node name="Car" type="CharacterBody2D"]
 collision_mask = 3
 script = ExtResource("1_uoj53")
 steeringCurve = ExtResource("2_06lh1")
+cameraScale = ExtResource("3_kky2y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="playerCarSprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -2.5)
 rotation = 1.5708
-texture = ExtResource("2_uoj53")
+texture = ExtResource("4_6w75b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_k61xc")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="playerCamera" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
 position_smoothing_enabled = true
 
@@ -40,45 +42,57 @@ position = Vector2(37, 45)
 
 [node name="tireSkid" type="Node2D" parent="skidLines"]
 z_index = 2
-position = Vector2(0, -2)
+position = Vector2(26, 3)
 script = ExtResource("3_k61xc")
 
 [node name="Line2D" type="Line2D" parent="skidLines/tireSkid"]
+width = 12.0
 gradient = SubResource("Gradient_k61xc")
 
 [node name="tireSkid2" type="Node2D" parent="skidLines"]
 z_index = 2
-position = Vector2(0, -87)
+position = Vector2(26, -95)
 script = ExtResource("3_k61xc")
 
 [node name="Line2D" type="Line2D" parent="skidLines/tireSkid2"]
+width = 12.0
 gradient = SubResource("Gradient_k61xc")
 
 [node name="tireSkid3" type="Node2D" parent="skidLines"]
 z_index = 2
-position = Vector2(-81, -87)
+position = Vector2(-98, -94)
 script = ExtResource("3_k61xc")
 
 [node name="Line2D" type="Line2D" parent="skidLines/tireSkid3"]
+width = 12.0
 gradient = SubResource("Gradient_k61xc")
 
 [node name="tireSkid4" type="Node2D" parent="skidLines"]
 z_index = 2
-position = Vector2(-81, -3)
+position = Vector2(-96, 4)
 script = ExtResource("3_k61xc")
 
 [node name="Line2D" type="Line2D" parent="skidLines/tireSkid4"]
+width = 12.0
 gradient = SubResource("Gradient_k61xc")
 
 [node name="frontCollision" type="Area2D" parent="."]
+position = Vector2(42, -8)
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="frontCollision"]
-position = Vector2(70, 0)
+position = Vector2(71.5, 4.5)
 shape = SubResource("RectangleShape2D_06lh1")
 
 [node name="RoofGun" parent="." instance=ExtResource("5_pvss3")]
+position = Vector2(-29, 0)
+
+[node name="HeadLights" type="PointLight2D" parent="."]
+position = Vector2(1979, 29)
+rotation = 1.5708
+scale = Vector2(0.653149, 3.66049)
+texture = ExtResource("7_6w75b")
 
 [connection signal="body_entered" from="frontCollision" to="." method="_on_front_collision_body_entered"]
 [connection signal="body_exited" from="frontCollision" to="." method="_on_front_collision_body_exited"]

@@ -1,11 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbrtvg3qhxf7a"]
+[gd_scene load_steps=6 format=3 uid="uid://bbrtvg3qhxf7a"]
 
 [ext_resource type="Script" uid="uid://85rrqh4issyn" path="res://bullets/bullets.gd" id="1_imifd"]
 [ext_resource type="Texture2D" uid="uid://bbey6bp0qk4bx" path="res://bullets/basic bullet.png" id="1_yd185"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_imifd"]
 radius = 6.0
-height = 36.0
+height = 140.0
+
+[sub_resource type="Gradient" id="Gradient_imifd"]
+offsets = PackedFloat32Array(0, 0.514825, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.0889488, 0.0889488, 0.0889488, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bhot2"]
+gradient = SubResource("Gradient_imifd")
+fill = 1
+fill_from = Vector2(0.491453, 0.478632)
 
 [node name="Bullets" type="CharacterBody2D"]
 collision_layer = 4
@@ -14,16 +23,28 @@ script = ExtResource("1_imifd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-15, 0)
+position = Vector2(-47, 3.63798e-12)
 rotation = 1.5708
+scale = Vector2(1, 3)
 texture = ExtResource("1_yd185")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_imifd")
 
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.92187, 1)
+color = Color(0.796048, 0.614578, 0.241252, 1)
+texture = SubResource("GradientTexture2D_bhot2")
+
 [node name="bulletActiveTime" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
 
+[node name="SeenInTimer" type="Timer" parent="."]
+wait_time = 0.03
+one_shot = true
+autostart = true
+
 [connection signal="timeout" from="bulletActiveTime" to="." method="_on_bullet_active_time_timeout"]
+[connection signal="timeout" from="SeenInTimer" to="." method="_on_seen_in_timer_timeout"]

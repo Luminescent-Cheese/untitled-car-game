@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj7fbixt561cp"
-path="res://.godot/imported/NewCar.png-5c4a3ea15c2c99f931f1569d00e60664.ctex"
+uid="uid://bn5ch0tti3nyo"
+path="res://.godot/imported/Basic Car Gun (2).png-d83c3f9e54a7bae165909a749590ccbc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Car/NewCar.png"
-dest_files=["res://.godot/imported/NewCar.png-5c4a3ea15c2c99f931f1569d00e60664.ctex"]
+source_file="res://Gun/Basic Car Gun (2).png"
+dest_files=["res://.godot/imported/Basic Car Gun (2).png-d83c3f9e54a7bae165909a749590ccbc.ctex"]
 
 [params]
 

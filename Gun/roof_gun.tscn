@@ -1,19 +1,19 @@
 [gd_scene load_steps=19 format=3 uid="uid://eyteytkq2ruo"]
 
-[ext_resource type="Texture2D" uid="uid://b2r0n6a37r7sy" path="res://Gun/NewCar GunPlateform.png" id="1_4gs73"]
-[ext_resource type="Texture2D" uid="uid://cimiwuvyq4ygi" path="res://Gun/NewCar GunBarrel.png" id="2_f23c4"]
+[ext_resource type="Texture2D" uid="uid://c48l4oc1bp253" path="res://Gun/Basic Car Gun.png" id="1_f23c4"]
 [ext_resource type="Script" uid="uid://dd1wh25t6up83" path="res://Gun/roof_gun_turret.gd" id="2_n4x0o"]
-[ext_resource type="Texture2D" uid="uid://btbfj5ijpuhkp" path="res://Gun/NewCar GunTurretBase.png" id="3_n4x0o"]
+[ext_resource type="Texture2D" uid="uid://bn5ch0tti3nyo" path="res://Gun/Basic Car Gun (2).png" id="3_n4x0o"]
+[ext_resource type="Texture2D" uid="uid://dwdxu7e8mce6h" path="res://Gun/Basic Car Gun (1).png" id="4_sumad"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sumad"]
-atlas = ExtResource("1_4gs73")
-region = Rect2(0, 0, 160, 160)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ua8ps"]
+atlas = ExtResource("1_f23c4")
+region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ua8ps"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sumad")
+"texture": SubResource("AtlasTexture_ua8ps")
 }],
 "loop": true,
 "name": &"basic_plateform",
@@ -21,8 +21,8 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psoqe"]
-atlas = ExtResource("2_f23c4")
-region = Rect2(0, 0, 160, 160)
+atlas = ExtResource("3_n4x0o")
+region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7uja0"]
 animations = [{
@@ -53,15 +53,15 @@ gradient = SubResource("Gradient_sumad")
 fill = 1
 fill_from = Vector2(0.504274, 0.5)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_nth1s"]
-atlas = ExtResource("3_n4x0o")
-region = Rect2(0, 0, 160, 160)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uja0"]
+atlas = ExtResource("4_sumad")
+region = Rect2(0, 0, 256, 256)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3v2yb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nth1s")
+"texture": SubResource("AtlasTexture_7uja0")
 }],
 "loop": true,
 "name": &"basic_body",
@@ -83,7 +83,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-1, 0)]
+"values": [Vector2(32, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -95,7 +95,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [Vector2(30, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -135,7 +135,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-1, 0), Vector2(-2, 0)]
+"values": [Vector2(32, 0), Vector2(30, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -147,7 +147,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.0333333, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0)]
+"values": [Vector2(30, 0), Vector2(28, 0), Vector2(30, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -198,19 +198,20 @@ _data = {
 
 [node name="GunPlateform" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -2.5)
+position = Vector2(29, 0)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_ua8ps")
 animation = &"basic_plateform"
 
 [node name="RotatingTurret" type="CharacterBody2D" parent="."]
-position = Vector2(-14, -2.5)
+position = Vector2(0, -3)
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("2_n4x0o")
 
 [node name="Barrel" type="AnimatedSprite2D" parent="RotatingTurret"]
 texture_filter = 1
+position = Vector2(30, 0)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_7uja0")
 animation = &"basic_barrel"
@@ -240,13 +241,12 @@ initial_velocity_max = 50.0
 
 [node name="TurretBody" type="AnimatedSprite2D" parent="RotatingTurret"]
 texture_filter = 1
-position = Vector2(-1, 0)
+position = Vector2(32, 0)
 rotation = 1.5708
 sprite_frames = SubResource("SpriteFrames_3v2yb")
 animation = &"basic_body"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RotatingTurret"]
-position = Vector2(-5, 2.5)
 shape = SubResource("CircleShape2D_f23c4")
 
 [node name="TurretAnimationPlayer" type="AnimationPlayer" parent="."]

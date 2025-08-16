@@ -4,8 +4,11 @@ extends CharacterBody2D
 @export var acceleration: int = 10
 @export var friction: int = 5
 
+@onready var playerCamera = $playerCamera
+
 #speed that vechicle turns at different speeds
 @export var steeringCurve: Curve
+@export var cameraScale: Curve
 
 var goalRotation = 0
 @export var currentSpeed: int = 0
@@ -13,9 +16,10 @@ var currentMovementDirection = Vector2.ZERO
 
 var frontCollision = false
 
-func _ready() -> void:
-	pass
 func _physics_process(delta: float) -> void:
+	#current Camera Zoom
+	var cameraTween = get_tree().create_tween()
+	cameraTween.tween_property(playerCamera,"zoom",Vector2(1,1) * cameraScale.sample_baked(currentSpeed), .5)
 	#handles Rotation
 	if Input.is_action_pressed("left"):
 		if abs(currentSpeed) > 0:
