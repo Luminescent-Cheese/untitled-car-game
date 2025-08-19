@@ -33,17 +33,17 @@ polygon = PackedVector2Array(-3.00002, -4.99999, -4, -1.00002, -4.00001, 2.99998
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6w75b"]
 size = Vector2(91.5, 53.5001)
 
-[sub_resource type="Animation" id="Animation_ycw3o"]
-resource_name = "RightHeadLightBlink"
+[sub_resource type="Animation" id="Animation_6w75b"]
+resource_name = "LeftHeadLightBlink"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("RightHeadLight:enabled")
+tracks/0/path = NodePath("LeftHeadLight:enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.05, 0.3, 0.366667, 0.566667, 0.644064, 0.699525, 0.746041, 0.788978, 0.822971, 0.858752),
+"times": PackedFloat32Array(0, 0.0666667, 0.277305, 0.333333, 0.545665, 0.633333, 0.7, 0.742463, 0.781822, 0.817603, 0.855174),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false, true, false, true, false, true, false, true]
@@ -76,17 +76,17 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_6w75b"]
-resource_name = "LeftHeadLightBlink"
+[sub_resource type="Animation" id="Animation_ycw3o"]
+resource_name = "RightHeadLightBlink"
 length = 0.9
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("LeftHeadLight:enabled")
+tracks/0/path = NodePath("RightHeadLight:enabled")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.277305, 0.333333, 0.545665, 0.633333, 0.7, 0.742463, 0.781822, 0.817603, 0.855174),
+"times": PackedFloat32Array(0, 0.05, 0.3, 0.366667, 0.566667, 0.644064, 0.699525, 0.746041, 0.788978, 0.822971, 0.858752),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [true, false, true, false, true, false, true, false, true, false, true]

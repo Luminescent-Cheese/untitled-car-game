@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbrtvg3qhxf7a"]
+[gd_scene load_steps=14 format=3 uid="uid://bbrtvg3qhxf7a"]
 
 [ext_resource type="Script" uid="uid://85rrqh4issyn" path="res://bullets/bullets.gd" id="1_imifd"]
 [ext_resource type="Texture2D" uid="uid://bbey6bp0qk4bx" path="res://bullets/basic bullet.png" id="1_yd185"]
@@ -8,17 +8,171 @@ radius = 6.0
 height = 140.0
 
 [sub_resource type="Gradient" id="Gradient_imifd"]
-offsets = PackedFloat32Array(0, 0.514825, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.0889488, 0.0889488, 0.0889488, 1, 0, 0, 0, 1)
+offsets = PackedFloat32Array(0, 0.51752)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_bhot2"]
 gradient = SubResource("Gradient_imifd")
 fill = 1
 fill_from = Vector2(0.491453, 0.478632)
 
+[sub_resource type="Gradient" id="Gradient_pyqi1"]
+offsets = PackedFloat32Array(0, 0.0512129)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a86yw"]
+gradient = SubResource("Gradient_pyqi1")
+fill = 1
+fill_from = Vector2(0.491453, 0.517094)
+
+[sub_resource type="Curve" id="Curve_imifd"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.994911, 0.50835), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_bhot2"]
+offsets = PackedFloat32Array(0.013624, 0.370572, 1)
+colors = PackedColorArray(1, 0.733333, 0, 1, 0.880873, 0.459471, 0.0998031, 1, 0.39, 0.39, 0.39, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhot2"]
 radius = 9.0
 height = 54.075
+
+[sub_resource type="Animation" id="Animation_bhot2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PointLight2D:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.92187, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:texture_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_imifd"]
+resource_name = "bulletHit"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CPUParticles2D:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"speedToZero"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PointLight2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("PointLight2D:texture_scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [2.0, 10.0, 0.01]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pyqi1"]
+_data = {
+&"RESET": SubResource("Animation_bhot2"),
+&"bulletHit": SubResource("Animation_imifd")
+}
 
 [node name="Bullets" type="CharacterBody2D"]
 collision_layer = 4
@@ -26,6 +180,7 @@ collision_mask = 2
 script = ExtResource("1_imifd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(-47, 3.63798e-12)
 rotation = 1.5708
@@ -39,6 +194,8 @@ shape = SubResource("CapsuleShape2D_imifd")
 [node name="PointLight2D" type="PointLight2D" parent="."]
 scale = Vector2(2.92187, 1)
 color = Color(0.796048, 0.614578, 0.241252, 1)
+shadow_enabled = true
+shadow_item_cull_mask = 3
 texture = SubResource("GradientTexture2D_bhot2")
 
 [node name="bulletActiveTime" type="Timer" parent="."]
@@ -50,6 +207,26 @@ wait_time = 0.03
 one_shot = true
 autostart = true
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+scale = Vector2(2.92187, 1)
+amount = 25
+texture = SubResource("GradientTexture2D_a86yw")
+one_shot = true
+speed_scale = 5.0
+explosiveness = 1.0
+randomness = 1.0
+direction = Vector2(-1, 0)
+spread = 80.5
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.55
+initial_velocity_max = 147.32
+angular_velocity_min = -202.81
+angular_velocity_max = 236.62
+scale_amount_min = 15.08
+scale_amount_max = 38.56
+scale_amount_curve = SubResource("Curve_imifd")
+color_ramp = SubResource("Gradient_bhot2")
+
 [node name="DetectCollision" type="Area2D" parent="."]
 scale = Vector2(2.92187, 1)
 collision_layer = 4
@@ -58,6 +235,11 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectCollision"]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_bhot2")
+
+[node name="bulletHitAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_pyqi1")
+}
 
 [connection signal="timeout" from="bulletActiveTime" to="." method="_on_bullet_active_time_timeout"]
 [connection signal="timeout" from="SeenInTimer" to="." method="_on_seen_in_timer_timeout"]

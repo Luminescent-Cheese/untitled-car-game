@@ -2,9 +2,10 @@ extends CharacterBody2D
 
 @export var direction: Vector2
 
-const SPEED = 7000
+@export var SPEED = 7000
 
 func _ready() -> void:
+	$CPUParticles2D.emitting = false
 	look_at(get_global_mouse_position())
 	direction = Vector2.from_angle(rotation)
 	visible = false
@@ -21,4 +22,8 @@ func _on_seen_in_timer_timeout() -> void:
 
 
 func _on_detect_collision_body_entered(body: Node2D) -> void:
-	queue_free()
+	#plays an animation of sparks and than deletes bullet
+	$bulletHitAnimation.play("bulletHit")
+
+func speedToZero():
+	SPEED = 0
