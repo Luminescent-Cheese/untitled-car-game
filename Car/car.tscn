@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://df354sfjqje18"]
+[gd_scene load_steps=14 format=3 uid="uid://df354sfjqje18"]
 
 [ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://Car/DriveController.gd" id="1_uoj53"]
 [ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_06lh1"]
@@ -6,7 +6,7 @@
 [ext_resource type="Curve" uid="uid://byc3adyh7rdcs" path="res://Car/cameraScale.tres" id="3_kky2y"]
 [ext_resource type="Texture2D" uid="uid://cosmr0jvp5fch" path="res://Car/NewCar (3) (1).png" id="4_6w75b"]
 [ext_resource type="PackedScene" uid="uid://eyteytkq2ruo" path="res://Gun/roof_gun.tscn" id="5_pvss3"]
-[ext_resource type="Texture2D" uid="uid://dc7id4jjyxrl8" path="res://Car/gradientTriangleLight.png" id="7_6w75b"]
+[ext_resource type="Script" uid="uid://cdvhgselvc4qs" path="res://Car/headlights.gd" id="8_3xtxf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k61xc"]
 radius = 52.0
@@ -17,6 +17,18 @@ colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_06lh1"]
 size = Vector2(23, 99)
+
+[sub_resource type="Gradient" id="Gradient_3xtxf"]
+offsets = PackedFloat32Array(0, 0.652291)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_bmgum"]
+gradient = SubResource("Gradient_3xtxf")
+fill = 1
+fill_from = Vector2(0.504274, 0.5)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kky2y"]
+polygon = PackedVector2Array(-3.00002, -4.99999, -4, -1.00002, -4.00001, 2.99998, 3.99999, 3.00002, 4, -0.999985, 2.99998, -5.00002, 15, -5.00006, 15, 0.45578, 15, 10.9999, -8.99996, 11, -9.00002, -4.99997)
 
 [node name="Car" type="CharacterBody2D"]
 collision_mask = 3
@@ -88,11 +100,33 @@ shape = SubResource("RectangleShape2D_06lh1")
 [node name="RoofGun" parent="." instance=ExtResource("5_pvss3")]
 position = Vector2(-29, 0)
 
-[node name="HeadLights" type="PointLight2D" parent="."]
-position = Vector2(1979, 29)
+[node name="Headlights" type="Node2D" parent="."]
+position = Vector2(105, -39)
 rotation = 1.5708
-scale = Vector2(0.653149, 3.66049)
-texture = ExtResource("7_6w75b")
+script = ExtResource("8_3xtxf")
+
+[node name="HeadLights" type="PointLight2D" parent="Headlights"]
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_bmgum")
+texture_scale = 50.0
+
+[node name="HeadLights2" type="PointLight2D" parent="Headlights"]
+position = Vector2(77, -0.000282288)
+shadow_enabled = true
+shadow_filter = 2
+texture = SubResource("GradientTexture2D_bmgum")
+texture_scale = 50.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Headlights"]
+position = Vector2(-7.62939e-06, -2)
+occluder = SubResource("OccluderPolygon2D_kky2y")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Headlights"]
+position = Vector2(77, -2.00028)
+rotation = 3.14159
+scale = Vector2(1, -1)
+occluder = SubResource("OccluderPolygon2D_kky2y")
 
 [connection signal="body_entered" from="frontCollision" to="." method="_on_front_collision_body_entered"]
 [connection signal="body_exited" from="frontCollision" to="." method="_on_front_collision_body_exited"]

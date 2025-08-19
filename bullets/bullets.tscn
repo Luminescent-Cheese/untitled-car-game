@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bbrtvg3qhxf7a"]
+[gd_scene load_steps=7 format=3 uid="uid://bbrtvg3qhxf7a"]
 
 [ext_resource type="Script" uid="uid://85rrqh4issyn" path="res://bullets/bullets.gd" id="1_imifd"]
 [ext_resource type="Texture2D" uid="uid://bbey6bp0qk4bx" path="res://bullets/basic bullet.png" id="1_yd185"]
@@ -15,6 +15,10 @@ colors = PackedColorArray(1, 1, 1, 1, 0.0889488, 0.0889488, 0.0889488, 1, 0, 0, 
 gradient = SubResource("Gradient_imifd")
 fill = 1
 fill_from = Vector2(0.491453, 0.478632)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bhot2"]
+radius = 9.0
+height = 54.075
 
 [node name="Bullets" type="CharacterBody2D"]
 collision_layer = 4
@@ -46,5 +50,15 @@ wait_time = 0.03
 one_shot = true
 autostart = true
 
+[node name="DetectCollision" type="Area2D" parent="."]
+scale = Vector2(2.92187, 1)
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectCollision"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_bhot2")
+
 [connection signal="timeout" from="bulletActiveTime" to="." method="_on_bullet_active_time_timeout"]
 [connection signal="timeout" from="SeenInTimer" to="." method="_on_seen_in_timer_timeout"]
+[connection signal="body_entered" from="DetectCollision" to="." method="_on_detect_collision_body_entered"]
