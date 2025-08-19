@@ -15,3 +15,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		headlightTween.tween_property(leftHeadlight,"rotation",0, .2)
 		headlightTween.tween_property(rightHeadlight,"rotation",deg_to_rad(180), .2)
+
+#Makes Headlights blink when hitting a wall
+func _on_right_headlight_hit_box_body_entered(body: Node2D) -> void:
+	if get_parent().currentSpeed > 800:
+		$RightHeadLightBlinkAnimation.play("RightHeadLightBlink")
+
+func _on_left_headlight_hix_box_body_entered(body: Node2D) -> void:
+	if get_parent().currentSpeed > 800:
+		$LeftHeadLightBlinkAnimation.play("LeftHeadLightBlink")

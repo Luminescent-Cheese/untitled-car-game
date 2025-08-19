@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://df354sfjqje18"]
+[gd_scene load_steps=19 format=3 uid="uid://df354sfjqje18"]
 
 [ext_resource type="Script" uid="uid://c7nyf8jvr5it0" path="res://Car/DriveController.gd" id="1_uoj53"]
 [ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_06lh1"]
@@ -29,6 +29,75 @@ fill_from = Vector2(0.504274, 0.5)
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_kky2y"]
 polygon = PackedVector2Array(-3.00002, -4.99999, -4, -1.00002, -4.00001, 2.99998, 3.99999, 3.00002, 4, -0.999985, 2.99998, -5.00002, 15, -5.00006, 15, 0.45578, 15, 10.9999, -8.99996, 11, -9.00002, -4.99997)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6w75b"]
+size = Vector2(91.5, 53.5001)
+
+[sub_resource type="Animation" id="Animation_ycw3o"]
+resource_name = "RightHeadLightBlink"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightHeadLight:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3, 0.366667, 0.566667, 0.644064, 0.699525, 0.746041, 0.788978, 0.822971, 0.858752),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_3xtxf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RightHeadLight:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LeftHeadLight:enabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_6w75b"]
+resource_name = "LeftHeadLightBlink"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LeftHeadLight:enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667, 0.277305, 0.333333, 0.545665, 0.633333, 0.7, 0.742463, 0.781822, 0.817603, 0.855174),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [true, false, true, false, true, false, true, false, true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bmgum"]
+_data = {
+&"LeftHeadLightBlink": SubResource("Animation_6w75b"),
+&"RESET": SubResource("Animation_3xtxf"),
+&"RightHeadLightBlink": SubResource("Animation_ycw3o")
+}
 
 [node name="Car" type="CharacterBody2D"]
 collision_mask = 3
@@ -105,13 +174,13 @@ position = Vector2(105, -39)
 rotation = 1.5708
 script = ExtResource("8_3xtxf")
 
-[node name="HeadLights" type="PointLight2D" parent="Headlights"]
+[node name="LeftHeadLight" type="PointLight2D" parent="Headlights"]
 shadow_enabled = true
 shadow_filter = 2
 texture = SubResource("GradientTexture2D_bmgum")
 texture_scale = 50.0
 
-[node name="HeadLights2" type="PointLight2D" parent="Headlights"]
+[node name="RightHeadLight" type="PointLight2D" parent="Headlights"]
 position = Vector2(77, -0.000282288)
 shadow_enabled = true
 shadow_filter = 2
@@ -128,5 +197,35 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 occluder = SubResource("OccluderPolygon2D_kky2y")
 
+[node name="RightHeadlightHitBox" type="Area2D" parent="Headlights"]
+position = Vector2(46, 4.99984)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Headlights/RightHeadlightHitBox"]
+position = Vector2(29.9999, -30.0001)
+shape = SubResource("RectangleShape2D_6w75b")
+
+[node name="LeftHeadlightHixBox" type="Area2D" parent="Headlights"]
+position = Vector2(1.90735e-05, 5)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Headlights/LeftHeadlightHixBox"]
+position = Vector2(6.9999, -29)
+shape = SubResource("RectangleShape2D_6w75b")
+
+[node name="RightHeadLightBlinkAnimation" type="AnimationPlayer" parent="Headlights"]
+libraries = {
+&"": SubResource("AnimationLibrary_bmgum")
+}
+
+[node name="LeftHeadLightBlinkAnimation" type="AnimationPlayer" parent="Headlights"]
+libraries = {
+&"": SubResource("AnimationLibrary_bmgum")
+}
+
 [connection signal="body_entered" from="frontCollision" to="." method="_on_front_collision_body_entered"]
 [connection signal="body_exited" from="frontCollision" to="." method="_on_front_collision_body_exited"]
+[connection signal="body_entered" from="Headlights/RightHeadlightHitBox" to="Headlights" method="_on_right_headlight_hit_box_body_entered"]
+[connection signal="body_entered" from="Headlights/LeftHeadlightHixBox" to="Headlights" method="_on_left_headlight_hix_box_body_entered"]
