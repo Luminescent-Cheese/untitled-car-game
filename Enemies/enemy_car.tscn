@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://cnef75aqkj5n1"]
+
+[ext_resource type="Texture2D" uid="uid://cosmr0jvp5fch" path="res://Car/NewCar (3) (1).png" id="1_6c2ke"]
+[ext_resource type="Script" uid="uid://to1j5hmsdh1a" path="res://Enemies/enemy_car.gd" id="1_qjkqu"]
+[ext_resource type="Curve" uid="uid://d0cwecvo8kkaa" path="res://Car/steering curve.tres" id="2_eb32y"]
+[ext_resource type="PackedScene" uid="uid://dcn564fxljuin" path="res://parts/skid_lines.tscn" id="4_mb8gg"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qjkqu"]
+radius = 52.0
+height = 216.0
+
+[node name="EnemyCar" type="CharacterBody2D"]
+modulate = Color(0.936881, 0.257515, 0, 1)
+collision_mask = 3
+script = ExtResource("1_qjkqu")
+steeringCurve = ExtResource("2_eb32y")
+
+[node name="EnemyCarSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("1_6c2ke")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_qjkqu")
+
+[node name="skidLines" parent="." instance=ExtResource("4_mb8gg")]
+position = Vector2(37, 45)

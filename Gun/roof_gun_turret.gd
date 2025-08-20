@@ -1,5 +1,4 @@
 extends CharacterBody2D
-
 @onready var turretAnimation = $"../TurretAnimationPlayer"
 @onready var bullet = preload("res://bullets/bullets.tscn")
 

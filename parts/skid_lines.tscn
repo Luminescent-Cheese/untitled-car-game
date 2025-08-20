@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcn564fxljuin"]
+
+[ext_resource type="Script" uid="uid://n8mpng4n1e4s" path="res://Car/tire_skid.gd" id="1_iabyh"]
+
+[sub_resource type="Gradient" id="Gradient_k61xc"]
+colors = PackedColorArray(1, 1, 1, 0, 0, 0, 0, 1)
+
+[node name="skidLines" type="Node2D"]
+
+[node name="tireSkid" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(26, 3)
+script = ExtResource("1_iabyh")
+
+[node name="Line2D" type="Line2D" parent="tireSkid"]
+width = 12.0
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid2" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(26, -95)
+script = ExtResource("1_iabyh")
+
+[node name="Line2D" type="Line2D" parent="tireSkid2"]
+width = 12.0
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid3" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-98, -94)
+script = ExtResource("1_iabyh")
+
+[node name="Line2D" type="Line2D" parent="tireSkid3"]
+width = 12.0
+gradient = SubResource("Gradient_k61xc")
+
+[node name="tireSkid4" type="Node2D" parent="."]
+z_index = 2
+position = Vector2(-96, 4)
+script = ExtResource("1_iabyh")
+
+[node name="Line2D" type="Line2D" parent="tireSkid4"]
+width = 12.0
+gradient = SubResource("Gradient_k61xc")

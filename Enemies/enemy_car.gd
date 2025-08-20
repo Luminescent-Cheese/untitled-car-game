@@ -1,32 +1,37 @@
 extends CharacterBody2D
-#Atributes
-@export var maxSpeed: int = 1500
-@export var acceleration: int = 10
-@export var friction: int = 5
-
-@onready var playerCamera = $playerCamera
-
-#speed that vechicle turns at different speeds
+#behavior variables:
+var maxSpeed = 1000
+var acceleration = 10
+var friction = 5
 @export var steeringCurve: Curve
-@export var cameraScale: Curve
 
+var currentSpeed = 0
 var goalRotation = 0
-@export var currentSpeed: int = 0
 var currentMovementDirection = Vector2.ZERO
 
-var frontCollision = false
+func get_information(playerPosition):
+	#Gets the inputs that the enemy should be doing
+	#wantedInputs stores the inputs we send to movementcode index 0 = right, 2 = left, 3 = accelerate, 4 = decelerate
+	var wantedInputs = [0,0,1,0]
+	var angleToPlayer = (global_position.direction_to(playerPosition)).angle()
+	var neededRotation = angleToPlayer - rotation
+	if abs(neededRotation) > 0.5:
+		if neededRotation >= 0:
+			wantedInputs[0] = 1
+		elif neededRotation < 0:
+			wantedInputs[1] = 1
+	return wantedInputs
 
 func _physics_process(delta: float) -> void:
-	#current Camera Zoom
-	var cameraTween = get_tree().create_tween()
-	cameraTween.tween_property(playerCamera,"zoom",Vector2(1,1) * cameraScale.sample_baked(currentSpeed), .5)
-	#handles Rotation
-	if Input.is_action_pressed("left"):
+	var InputList = get_information($"../Car".global_position)
+	if InputList[1] == 1:
+		#right
 		if abs(currentSpeed) > 0:
 			goalRotation -= steeringCurve.sample_baked(currentSpeed)
 		if currentSpeed > 1000:
 			currentSpeed -= 5
-	if Input.is_action_pressed("right"):
+	if InputList[0] == 1:
+		#left
 		if abs(currentSpeed) > 0:
 			goalRotation += steeringCurve.sample_baked(currentSpeed)
 		if currentSpeed > 1000:
@@ -34,10 +39,10 @@ func _physics_process(delta: float) -> void:
 	var rotateTween = get_tree().create_tween()
 	rotateTween.tween_property(self, "rotation", goalRotation, 0.5) 
 	
-	if Input.is_action_pressed("accelerate"):
+	if InputList[2] == 1:
 		if currentSpeed < maxSpeed:
 			currentSpeed += acceleration
-	elif Input.is_action_pressed("reverse"):
+	elif InputList[3] == 1:
 		if currentSpeed > (0-maxSpeed/2):
 			currentSpeed -= acceleration
 	else:
@@ -54,24 +59,7 @@ func _physics_process(delta: float) -> void:
 				currentSpeed += friction 
 			else:
 				currentSpeed += friction * 1.2
-		#Gives slight screen shake when gun is fired
-	if Input.is_action_pressed("fire gun"):
-		playerCamera.randomStrength = 5
-		playerCamera.shakeScreen = true
 	var rotationInVector2 = Vector2.from_angle(rotation)
 	currentMovementDirection = currentMovementDirection.lerp(rotationInVector2, .1)
 	velocity = currentMovementDirection * currentSpeed
 	move_and_slide()
-
-
-
-
-func _on_front_collision_body_entered(body: Node2D) -> void:
-	#makes screen shake at specified strength when the car hits a wall
-	playerCamera.randomStrength = currentSpeed/15
-	playerCamera.shakeScreen = true
-	frontCollision = true
-	currentSpeed = (0 - currentSpeed)/3
-	
-func _on_front_collision_body_exited(body: Node2D) -> void:
-	frontCollision = false
