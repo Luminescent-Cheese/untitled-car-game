@@ -4,10 +4,15 @@ extends CharacterBody2D
 
 @export var SPEED = 7000
 
+#Higher the number lower the accuracy. (degrees from mouse where it can be shot)
+@export var ACCURACY = 0
+var RNG: RandomNumberGenerator = RandomNumberGenerator.new()
+
 func _ready() -> void:
 	$CPUParticles2D.emitting = false
 	look_at(get_global_mouse_position())
-	direction = Vector2.from_angle(rotation)
+	var shotDirection = rad_to_deg(rotation) + RNG.randf_range(0-ACCURACY, ACCURACY)
+	direction = Vector2.from_angle(deg_to_rad(shotDirection))
 	visible = false
 func _physics_process(delta: float) -> void:
 	velocity = direction * SPEED
