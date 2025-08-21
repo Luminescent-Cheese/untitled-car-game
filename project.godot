@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Driving Game"
-run/main_scene="uid://cxtm8ui0b4rdy"
+run/main_scene="uid://d3g6joswovp3r"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -53,6 +53,7 @@ right={
 2d_physics/layer_2="walls"
 2d_physics/layer_3="playerBullets"
 2d_physics/layer_4="carTurret"
+2d_physics/layer_5="Enemy"
 
 [rendering]
 

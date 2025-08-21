@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cxtm8ui0b4rdy"]
+[gd_scene load_steps=4 format=3 uid="uid://xrjfwkn8u4l1"]
 
 [ext_resource type="PackedScene" uid="uid://boh37fyhjdws" path="res://Level_Generation/procederal_generation.tscn" id="1_ia1lp"]
 [ext_resource type="PackedScene" uid="uid://df354sfjqje18" path="res://Car/car.tscn" id="1_uhqqe"]
@@ -11,7 +11,7 @@ z_index = -2
 position = Vector2(-218, -392)
 
 [node name="Car" parent="." instance=ExtResource("1_uhqqe")]
-position = Vector2(610, 309)
+position = Vector2(579, 364)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.497474, 0.497474, 0.497474, 1)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3g6joswovp3r"]
+
+[ext_resource type="PackedScene" uid="uid://df354sfjqje18" path="res://Car/car.tscn" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://boh37fyhjdws" path="res://Level_Generation/procederal_generation.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://cnef75aqkj5n1" path="res://Enemies/enemy_car.tscn" id="3_feb5d"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Car" parent="." instance=ExtResource("1_e2o6t")]
+position = Vector2(562, 300)
+
+[node name="ProcederalGeneration" parent="." instance=ExtResource("2_feb5d")]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.564962, 0.564962, 0.564962, 1)
+
+[node name="EnemyCar" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(1068, 650)

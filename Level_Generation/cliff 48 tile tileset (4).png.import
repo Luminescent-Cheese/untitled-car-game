@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6ph0kpd28bk6"
-path="res://.godot/imported/cliff 48 tile tileset.png-083aba49c3676f89dd1fc51854cd3d57.ctex"
+uid="uid://c2ipv4sfr8gbh"
+path="res://.godot/imported/cliff 48 tile tileset (4).png-b03793e7b840471089ab7c7b4b9deab8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level_Generation/cliff 48 tile tileset.png"
-dest_files=["res://.godot/imported/cliff 48 tile tileset.png-083aba49c3676f89dd1fc51854cd3d57.ctex"]
+source_file="res://Level_Generation/cliff 48 tile tileset (4).png"
+dest_files=["res://.godot/imported/cliff 48 tile tileset (4).png-b03793e7b840471089ab7c7b4b9deab8.ctex"]
 
 [params]
 

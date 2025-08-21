@@ -27,7 +27,7 @@ func _ready():
 	generate_world()
 
 func find_seed():
-	var attemptSeed = int(RNG.randf_range(0, 100000))
+	var attemptSeed = int(RNG.randf_range(0, 10000000))
 	noise = noise_height_text.noise
 	noise.seed = attemptSeed
 	if noise.get_noise_2d(1,1) < -0.1:
